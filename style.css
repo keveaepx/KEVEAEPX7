@@ -81,3 +81,55 @@ nav .apps-button {
 nav .apps-button:hover {
   background: #00cc77;
 }
+
+/* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  overflow: auto;
+  background: rgba(0,0,0,0.7);
+}
+.modal-content {
+  background: #222;
+  margin: 5% auto;
+  padding: 30px 20px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  color: #eee;
+  position: relative;
+}
+.close {
+  color: #00ff99;
+  position: absolute;
+  right: 20px; top: 15px;
+  font-size: 2em;
+  font-weight: bold;
+  cursor: pointer;
+}
+.app-links {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.app-card {
+  display: block;
+  background: #111;
+  color: #00ff99;
+  padding: 18px 0;
+  border-radius: 8px;
+  font-size: 1.1em;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 2px 8px #0008;
+  transition: background 0.2s, color 0.2s;
+}
+.app-card:hover {
+  background: #00ff99;
+  color: #111;
+}

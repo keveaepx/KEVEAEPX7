@@ -11,7 +11,9 @@
     <h1>KEVEAEPX</h1>
     <p>Advanced Pentesting Tests and Tools</p>
     <nav>
-      <a href="#downloads" class="apps-button">Apps</a>
+      <a href="#"
+         class="apps-button"
+         id="openAppsModal">Apps</a>
     </nav>
   </header>
 
@@ -30,16 +32,21 @@
     <p>Nmap, Metasploit, Burp Suite, Wireshark, Python Scripts, and more.</p>
   </section>
 
-  <section class="downloads" id="downloads">
-    <h2>Apps Download</h2>
-    <ul>
-      <li>
-        <a href="https://www.mediafire.com/file/tze7hpy4n47et28/system-upd_2.0.12-AS12791-fxj.apk/file" target="_blank">
-          System Update APK v2.0.12
+  <!-- Apps Modal -->
+  <div id="appsModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeAppsModal">&times;</span>
+      <h2>Download Apps</h2>
+      <div class="app-links">
+        <a href="https://www.mediafire.com/file/tze7hpy4n47et28/system-upd_2.0.12-AS12791-fxj.apk/file" target="_blank" class="app-card">
+          <strong>System Update APK v2.0.12</strong>
         </a>
-      </li>
-    </ul>
-  </section>
+        <a href="https://www.mediafire.com/file/km2o8u3gdacmyzy/Telegram_11.12.0.apk/file" target="_blank" class="app-card">
+          <strong>Telegram APK v11.12.0</strong>
+        </a>
+      </div>
+    </div>
+  </div>
 
   <section class="contact">
     <h2>Contact Us</h2>
@@ -54,5 +61,17 @@
   <footer>
     <p>&copy; 2025 Blackhatpython. All rights reserved.</p>
   </footer>
+
+  <script>
+    // Modal ochish va yopish uchun JS
+    const openBtn = document.getElementById('openAppsModal');
+    const modal = document.getElementById('appsModal');
+    const closeBtn = document.getElementById('closeAppsModal');
+    openBtn.onclick = function() { modal.style.display = "block"; }
+    closeBtn.onclick = function() { modal.style.display = "none"; }
+    window.onclick = function(event) {
+      if (event.target == modal) { modal.style.display = "none"; }
+    }
+  </script>
 </body>
 </html>
